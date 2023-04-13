@@ -8,8 +8,6 @@ const string APPEND_STRING = "Making an impact that matters –Deloitte";
 List<Tuple<int, string>> inputList = new(7);
 
 Console.WriteLine($"Add an item to the list: (current items: {inputList.Count}/7)");
-Console.WriteLine("To exit press 'x'");
-Console.WriteLine("To see previous records press 'r'");
 
 GetInput();
 
@@ -42,7 +40,9 @@ void GetInput()
             Console.WriteLine(e.Message);
         }
     }
-    
+
+    Console.WriteLine();
+
     WriteCompleteList();
 
 }
@@ -75,5 +75,39 @@ void HandleStringInput(string input)
 
 void WriteCompleteList()
 {
+    foreach (var item in inputList)
+    {
+        if(item.Item1 != 0)
+        {
+            WriteInt(item.Item1);
+        }
+        else
+        {
 
+        }
+    }
+}
+
+void WriteInt(int item)
+{
+    if(item % 2 == 0)
+    {
+        Console.WriteLine(item / 2 + CheckIfPrimeNumber(item));
+    }
+    else
+    {
+        Console.WriteLine(item * 2 + CheckIfPrimeNumber(item));
+    }
+}
+
+string CheckIfPrimeNumber(int number)
+{
+    for (int i = 2; i < number / 2; i++)
+    {
+        if (number % i == 0)
+        {
+            return "";
+        }
+    }
+    return " [prime number]";
 }
