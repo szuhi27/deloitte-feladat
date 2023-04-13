@@ -1,5 +1,4 @@
 ﻿using deloitte_feladat;
-using System.Diagnostics;
 
 const int MIN_INT = 10;
 const int MAX_INT = 9999;
@@ -81,27 +80,28 @@ void WriteAllItemsRaw()
 
 void HandleIntInput(int input)
 {
-    try
+    if (input < MIN_INT || input > MAX_INT)
     {
-        if (input < MIN_INT || input > MAX_INT)
-        {
-            throw new WrongInputException("Number needs to be between 10 and 9999");
-        }
-        else
-        {
-            inputList.Add(new Tuple<int, string>(input, ""));
-            Console.WriteLine($"{input} added to the list");
-        }
+        throw new WrongInputException("Number needs to be between 10 and 9999");
     }
-    catch (WrongInputException e)
+    else
     {
-        Console.WriteLine(e.Message);
+        inputList.Add(new Tuple<int, string>(input, ""));
+        Console.WriteLine($"{input} added to the list");
     }
 }
 
 void HandleStringInput(string input)
 {
-
+    if(input.Length < MIN_STR_LEN ||  input.Length > MAX_STR_LEN)
+    {
+        throw new WrongInputException("String's length needs to be between 5 and 45");
+    }
+    else
+    {
+        inputList.Add(new Tuple<int, string>(0, input));
+        Console.WriteLine($"{input} added to the list");
+    }
 }
 
 void WriteCompleteList()
