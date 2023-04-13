@@ -83,7 +83,7 @@ void WriteCompleteList()
         }
         else
         {
-
+            Console.WriteLine(string.Concat(item.Item2, APPEND_STRING.AsSpan(0, item.Item2.Length)));
         }
     }
 }
