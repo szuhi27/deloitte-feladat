@@ -25,25 +25,9 @@ void GetInput()
             {
                 throw new WrongInputException("Input can't be null!");
             }
-            else if (input == "x")
-            {
-                Environment.Exit(1);
-            }
-            else if (input == "r") // 4 debugging
-            {
-                if (inputList.Count == 0)
-                {
-                    Console.WriteLine("There is no data commited.");
-                }
-                else
-                {
-                    WriteAllItemsRaw();
-                }
-            }
             else
             {
-                int intInput;
-                if (int.TryParse(input, out intInput))
+                if (int.TryParse(input, out int intInput))
                 {
                     HandleIntInput(intInput);
                 }
@@ -63,44 +47,29 @@ void GetInput()
 
 }
 
-void WriteAllItemsRaw()
-{
-    foreach (var item in inputList)
-    {
-        if (item.Item1 == 0)
-        {
-            Console.WriteLine($"{item.Item2}\n");
-        }
-        else
-        {
-            Console.WriteLine($"{item.Item1}\n");
-        }
-    }
-}
-
 void HandleIntInput(int input)
 {
-    if (input < MIN_INT || input > MAX_INT)
+    if (input >= MIN_INT && input <= MAX_INT)
     {
-        throw new WrongInputException("Number needs to be between 10 and 9999");
+        inputList.Add(new Tuple<int, string>(input, ""));
+        Console.WriteLine($"{input} added to the list (current items: {inputList.Count}/7)");
     }
     else
     {
-        inputList.Add(new Tuple<int, string>(input, ""));
-        Console.WriteLine($"{input} added to the list");
+        throw new WrongInputException("Number needs to be between 10 and 9999");
     }
 }
 
 void HandleStringInput(string input)
 {
-    if(input.Length < MIN_STR_LEN ||  input.Length > MAX_STR_LEN)
+    if (input.Length >= MIN_STR_LEN && input.Length <= MAX_STR_LEN)
     {
-        throw new WrongInputException("String's length needs to be between 5 and 45");
+        inputList.Add(new Tuple<int, string>(0, input));
+        Console.WriteLine($"{input} added to the list (current items: {inputList.Count}/7)");
     }
     else
     {
-        inputList.Add(new Tuple<int, string>(0, input));
-        Console.WriteLine($"{input} added to the list");
+        throw new WrongInputException("String's length needs to be between 5 and 45");
     }
 }
 
