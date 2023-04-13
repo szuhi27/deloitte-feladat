@@ -92,15 +92,15 @@ void WriteInt(int item)
 {
     if(item % 2 == 0)
     {
-        Console.WriteLine(item / 2 + CheckIfPrimeNumber(item));
+        Console.WriteLine(item / 2 + ReturnPrimeTextIfPrimeNumber(item));
     }
     else
     {
-        Console.WriteLine(item * 2 + CheckIfPrimeNumber(item));
+        Console.WriteLine(item * 2 + ReturnPrimeTextIfPrimeNumber(item));
     }
 }
 
-string CheckIfPrimeNumber(int number)
+string ReturnPrimeTextIfPrimeNumber(int number)
 {
     for (int i = 2; i < number / 2; i++)
     {
